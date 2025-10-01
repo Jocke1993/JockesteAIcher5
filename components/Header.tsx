@@ -7,7 +7,7 @@ interface HeaderProps {
 // FIX: Changed return type from JSX.Element to React.ReactElement to resolve "Cannot find namespace 'JSX'" error.
 export function Header({ subtitle }: HeaderProps): React.ReactElement {
   return (
-    <header className="bg-green-100 border-b border-green-200">
+    <header className="bg-red-100 border-b border-red-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-center">
         <h1 className="text-2xl font-bold text-slate-800">
           JockesTeAIcher
