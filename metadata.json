@@ -1,0 +1,5 @@
+{
+  "name": "JockesTeAIcher",
+  "description": "An application for students to receive AI-powered feedback on their assignments and engage in a guided discussion chat to develop critical thinking.",
+  "requestFramePermissions": []
+}
