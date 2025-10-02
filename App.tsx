@@ -84,7 +84,7 @@ function App(): React.ReactElement {
           onClick={() => setCurrentPage('check')}
           className={`w-full rounded-lg py-3 px-4 text-base font-semibold transition-colors duration-200 ${currentPage === 'check' ? 'bg-white text-indigo-600 shadow-md' : 'text-slate-600 hover:bg-slate-200'}`}
         >
-          {t.checkAssignment}
+          Granska uppgift
         </button>
         <button
           role="tab"
@@ -92,7 +92,7 @@ function App(): React.ReactElement {
           onClick={() => setCurrentPage('discuss')}
           className={`w-full rounded-lg py-3 px-4 text-base font-semibold transition-colors duration-200 ${currentPage === 'discuss' ? 'bg-white text-indigo-600 shadow-md' : 'text-slate-600 hover:bg-slate-200'}`}
         >
-          {t.discussionAndHelp}
+          Diskussion & hjälp
         </button>
         <button
           role="tab"
@@ -100,7 +100,7 @@ function App(): React.ReactElement {
           onClick={() => setCurrentPage('test')}
           className={`w-full rounded-lg py-3 px-4 text-base font-semibold transition-colors duration-200 ${currentPage === 'test' ? 'bg-white text-indigo-600 shadow-md' : 'text-slate-600 hover:bg-slate-200'}`}
         >
-          {t.test}
+          Test
         </button>
     </div>
   );
@@ -113,7 +113,7 @@ function App(): React.ReactElement {
             onClick={() => setSubject('English')}
             className={`w-1/2 rounded-md py-1.5 text-sm font-semibold transition-colors duration-200 ${subject === 'English' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-600 hover:bg-slate-200'}`}
         >
-            English
+            Engelska
         </button>
         <button
             role="radio"
