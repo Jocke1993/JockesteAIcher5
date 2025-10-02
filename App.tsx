@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Header } from './components/Header';
 import CheckAssignmentPage from './pages/CheckAssignmentPage';
 import DiscussionHelpPage from './pages/DiscussionHelpPage';
+import TestChatPage from './pages/TestChatPage';
 
-type Page = 'check' | 'discuss';
+type Page = 'check' | 'discuss' | 'test';
 type Subject = 'English' | 'Svenska';
 
 const translations = {
@@ -12,6 +13,7 @@ const translations = {
     subject: 'Subject',
     checkAssignment: 'Check Assignment',
     discussionAndHelp: 'Discussion & Help',
+    test: 'Test',
     footerText: 'Powered by AI. Always double-check feedback with your teacher.',
     
     // Check Assignment Page
@@ -41,6 +43,7 @@ const translations = {
     subject: 'Ämne',
     checkAssignment: 'Granska uppgift',
     discussionAndHelp: 'Diskussion & hjälp',
+    test: 'Test',
     footerText: 'Drivs av AI. Dubbelkolla alltid feedback med din lärare.',
 
     // Check Assignment Page
@@ -91,6 +94,14 @@ function App(): React.ReactElement {
         >
           {t.discussionAndHelp}
         </button>
+        <button
+          role="tab"
+          aria-selected={currentPage === 'test'}
+          onClick={() => setCurrentPage('test')}
+          className={`w-full rounded-lg py-3 px-4 text-base font-semibold transition-colors duration-200 ${currentPage === 'test' ? 'bg-white text-indigo-600 shadow-md' : 'text-slate-600 hover:bg-slate-200'}`}
+        >
+          {t.test}
+        </button>
     </div>
   );
 
@@ -132,6 +143,7 @@ function App(): React.ReactElement {
 
             {currentPage === 'check' && <CheckAssignmentPage t={t} subject={subject} />}
             {currentPage === 'discuss' && <DiscussionHelpPage t={t} subject={subject} />}
+            {currentPage === 'test' && <TestChatPage t={t} subject={subject} />}
         </div>
 
       </main>

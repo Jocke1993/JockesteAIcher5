@@ -52,3 +52,28 @@ export async function getChatResponse(messages: ChatMessage[], subject: 'English
         throw new Error("Failed to get a response from the chat model.");
     }
 }
+
+export async function getTestChatResponse(messages: ChatMessage[], subject: 'English' | 'Svenska'): Promise<{ text: string }> {
+    try {
+        const response = await fetch('/api/proxy', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                type: 'get-test-chat-response',
+                payload: { messages, subject },
+            }),
+        });
+
+        if (!response.ok) {
+            const errorBody = await response.json();
+            throw new Error(errorBody.error || 'Failed to fetch chat response from the server (test environment).');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("API proxy call failed for test chat:", error);
+        throw new Error("Failed to get a response from the test chat model.");
+    }
+}
