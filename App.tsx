@@ -3,8 +3,9 @@ import { Header } from './components/Header';
 import CheckAssignmentPage from './pages/CheckAssignmentPage';
 import DiscussionHelpPage from './pages/DiscussionHelpPage';
 import TestChatPage from './pages/TestChatPage';
+import AudioSupportPage from './pages/AudioSupportPage';
 
-type Page = 'check' | 'discuss' | 'test';
+type Page = 'check' | 'discuss' | 'test' | 'audio';
 type Subject = 'English' | 'Svenska';
 
 const translations = {
@@ -14,6 +15,7 @@ const translations = {
     checkAssignment: 'Check Assignment',
     discussionAndHelp: 'Discussion & Help',
     test: 'Test',
+    audioSupport: 'Audio Support',
     footerText: 'Powered by AI. Always double-check feedback with your teacher.',
     
     // Check Assignment Page
@@ -37,6 +39,23 @@ const translations = {
     chatPlaceholder: 'Ask a question or describe what you need help with...',
     send: 'Send',
     thinking: 'Thinking...',
+
+    // Audio Support Page
+    pasteOrUpload: 'Paste text or upload a file to have it read aloud.',
+    uploadFile: 'Upload File',
+    yourTextForTTS: 'Your text for text-to-speech',
+    textPlaceholderTTS: 'Type or paste your text here...',
+    voice: 'Voice',
+    speed: 'Speed',
+    play: 'Play',
+    pause: 'Pause',
+    stop: 'Stop',
+    resume: 'Resume',
+    noVoicesMessage: 'No voices were found in your browser. You may need to install them in your operating system settings.',
+    noVoicesLinkText: 'Learn how',
+    loadFromGoogleDrive: 'Load from Google Drive',
+    googleDriveInstructions: 'To load text from Google Drive, please open your document, copy the text, and paste it into the text box here.',
+    close: 'Close',
   },
   sv: {
     headerSubtitle: 'AI-drivna verktyg för lärande och feedback.',
@@ -44,6 +63,7 @@ const translations = {
     checkAssignment: 'Granska uppgift',
     discussionAndHelp: 'Diskussion & hjälp',
     test: 'Test',
+    audioSupport: 'Ljudstöd',
     footerText: 'Drivs av AI. Dubbelkolla alltid feedback med din lärare.',
 
     // Check Assignment Page
@@ -67,6 +87,23 @@ const translations = {
     chatPlaceholder: 'Ställ en fråga eller beskriv vad du behöver hjälp med...',
     send: 'Skicka',
     thinking: 'Tänker...',
+
+    // Audio Support Page
+    pasteOrUpload: 'Klistra in text eller ladda upp en fil för att få den uppläst.',
+    uploadFile: 'Ladda upp fil',
+    yourTextForTTS: 'Din text för uppläsning',
+    textPlaceholderTTS: 'Skriv eller klistra in din text här...',
+    voice: 'Röst',
+    speed: 'Hastighet',
+    play: 'Spela upp',
+    pause: 'Pausa',
+    stop: 'Stoppa',
+    resume: 'Återuppta',
+    noVoicesMessage: 'Inga röster hittades i din webbläsare. Du kan behöva installera dem i ditt operativsystems inställningar.',
+    noVoicesLinkText: 'Lär dig hur',
+    loadFromGoogleDrive: 'Ladda från Google Drive',
+    googleDriveInstructions: 'För att ladda text från Google Drive, vänligen öppna ditt dokument, kopiera texten och klistra in den i textrutan här.',
+    close: 'Stäng',
   },
 };
 
@@ -102,6 +139,14 @@ function App(): React.ReactElement {
         >
           Test
         </button>
+        <button
+          role="tab"
+          aria-selected={currentPage === 'audio'}
+          onClick={() => setCurrentPage('audio')}
+          className={`w-full rounded-lg py-3 px-4 text-base font-semibold transition-colors duration-200 ${currentPage === 'audio' ? 'bg-white text-indigo-600 shadow-md' : 'text-slate-600 hover:bg-slate-200'}`}
+        >
+          Ljudstöd
+        </button>
     </div>
   );
 
@@ -133,7 +178,7 @@ function App(): React.ReactElement {
         
         <div className="max-w-4xl mx-auto">
             <div className="flex flex-col items-center gap-4 mb-10">
-                <div className="w-full max-w-lg">
+                <div className="w-full max-w-2xl">
                     <PageNavigation />
                 </div>
                 <div className="w-full max-w-lg">
@@ -144,6 +189,7 @@ function App(): React.ReactElement {
             {currentPage === 'check' && <CheckAssignmentPage t={t} subject={subject} />}
             {currentPage === 'discuss' && <DiscussionHelpPage t={t} subject={subject} />}
             {currentPage === 'test' && <TestChatPage t={t} subject={subject} />}
+            {currentPage === 'audio' && <AudioSupportPage t={t} subject={subject} />}
         </div>
 
       </main>
