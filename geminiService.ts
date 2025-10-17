@@ -27,32 +27,6 @@ export async function getAssignmentFeedback(instructions: string, studentText: s
   }
 }
 
-// This function now sends the entire chat history to the stateless proxy.
-export async function getChatResponse(messages: ChatMessage[], subject: 'English' | 'Svenska'): Promise<{ text: string }> {
-    try {
-        const response = await fetch('/api/proxy', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                type: 'get-chat-response',
-                payload: { messages, subject },
-            }),
-        });
-
-        if (!response.ok) {
-            const errorBody = await response.json();
-            throw new Error(errorBody.error || 'Failed to fetch chat response from the server.');
-        }
-
-        return await response.json();
-    } catch (error) {
-        console.error("API proxy call failed for chat:", error);
-        throw new Error("Failed to get a response from the chat model.");
-    }
-}
-
 export async function getTestChatResponse(messages: ChatMessage[], subject: 'English' | 'Svenska'): Promise<{ text: string }> {
     try {
         const response = await fetch('/api/proxy', {

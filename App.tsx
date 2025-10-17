@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Header } from './components/Header';
 import CheckAssignmentPage from './pages/CheckAssignmentPage';
-import DiscussionHelpPage from './pages/DiscussionHelpPage';
 import TestChatPage from './pages/TestChatPage';
 import AudioSupportPage from './pages/AudioSupportPage';
 
-type Page = 'check' | 'discuss' | 'test' | 'audio';
+type Page = 'check' | 'test' | 'audio';
 type Subject = 'English' | 'Svenska';
 
 const translations = {
@@ -13,8 +12,7 @@ const translations = {
     headerSubtitle: 'AI-powered tools for learning and feedback.',
     subject: 'Subject',
     checkAssignment: 'Check Assignment',
-    discussionAndHelp: 'Discussion & Help',
-    test: 'Test',
+    test: 'Study Help',
     audioSupport: 'Audio Support',
     footerText: 'Powered by AI. Always double-check feedback with your teacher.',
     
@@ -34,7 +32,7 @@ const translations = {
     followingInstructions: 'Following Instructions',
     languageAndStyle: 'Language & Style',
     
-    // Discussion Page
+    // Generic chat translations (used by Test page)
     chatWelcome: 'Welcome! How can I help you think through your assignment today?',
     chatPlaceholder: 'Ask a question or describe what you need help with...',
     send: 'Send',
@@ -61,8 +59,7 @@ const translations = {
     headerSubtitle: 'AI-drivna verktyg för lärande och feedback.',
     subject: 'Ämne',
     checkAssignment: 'Granska uppgift',
-    discussionAndHelp: 'Diskussion & hjälp',
-    test: 'Test',
+    test: 'Plugghjälp',
     audioSupport: 'Ljudstöd',
     footerText: 'Drivs av AI. Dubbelkolla alltid feedback med din lärare.',
 
@@ -82,7 +79,7 @@ const translations = {
     followingInstructions: 'Följa instruktioner',
     languageAndStyle: 'Språk & Stil',
 
-    // Discussion Page
+    // Generic chat translations (used by Test page)
     chatWelcome: 'Välkommen! Hur kan jag hjälpa dig att tänka igenom din uppgift idag?',
     chatPlaceholder: 'Ställ en fråga eller beskriv vad du behöver hjälp med...',
     send: 'Skicka',
@@ -121,15 +118,7 @@ function App(): React.ReactElement {
           onClick={() => setCurrentPage('check')}
           className={`w-full rounded-lg py-3 px-4 text-base font-semibold transition-colors duration-200 ${currentPage === 'check' ? 'bg-white text-indigo-600 shadow-md' : 'text-slate-600 hover:bg-slate-200'}`}
         >
-          Granska uppgift
-        </button>
-        <button
-          role="tab"
-          aria-selected={currentPage === 'discuss'}
-          onClick={() => setCurrentPage('discuss')}
-          className={`w-full rounded-lg py-3 px-4 text-base font-semibold transition-colors duration-200 ${currentPage === 'discuss' ? 'bg-white text-indigo-600 shadow-md' : 'text-slate-600 hover:bg-slate-200'}`}
-        >
-          Diskussion & hjälp
+          {translations.sv.checkAssignment}
         </button>
         <button
           role="tab"
@@ -137,7 +126,7 @@ function App(): React.ReactElement {
           onClick={() => setCurrentPage('test')}
           className={`w-full rounded-lg py-3 px-4 text-base font-semibold transition-colors duration-200 ${currentPage === 'test' ? 'bg-white text-indigo-600 shadow-md' : 'text-slate-600 hover:bg-slate-200'}`}
         >
-          Test
+          {translations.sv.test}
         </button>
         <button
           role="tab"
@@ -145,7 +134,7 @@ function App(): React.ReactElement {
           onClick={() => setCurrentPage('audio')}
           className={`w-full rounded-lg py-3 px-4 text-base font-semibold transition-colors duration-200 ${currentPage === 'audio' ? 'bg-white text-indigo-600 shadow-md' : 'text-slate-600 hover:bg-slate-200'}`}
         >
-          Ljudstöd
+          {translations.sv.audioSupport}
         </button>
     </div>
   );
@@ -181,13 +170,12 @@ function App(): React.ReactElement {
                 <div className="w-full max-w-2xl">
                     <PageNavigation />
                 </div>
-                <div className="w-full max-w-lg">
+                <div className="w-full max-w-2xl">
                     <SubjectSwitcher />
                 </div>
             </div>
 
             {currentPage === 'check' && <CheckAssignmentPage t={t} subject={subject} />}
-            {currentPage === 'discuss' && <DiscussionHelpPage t={t} subject={subject} />}
             {currentPage === 'test' && <TestChatPage t={t} subject={subject} />}
             {currentPage === 'audio' && <AudioSupportPage t={t} subject={subject} />}
         </div>

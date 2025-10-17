@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { type ChatMessage } from '../types';
-import { getChatResponse } from '../geminiService';
+// FIX: Corrected import to use getTestChatResponse as getChatResponse is not exported from geminiService.
+import { getTestChatResponse } from '../geminiService';
 import { ChatMessageBubble } from '../components/ChatMessage';
 import { SendIcon } from '../components/icons/SendIcon';
 
@@ -40,7 +41,8 @@ function DiscussionHelpPage({ t, subject }: DiscussionHelpPageProps): React.Reac
     setIsLoading(true);
 
     try {
-      const response = await getChatResponse(newMessages, subject);
+      // FIX: Corrected function call to use getTestChatResponse.
+      const response = await getTestChatResponse(newMessages, subject);
       const modelMessage: ChatMessage = { role: 'model', text: response.text };
       setMessages((prev) => [...prev, modelMessage]);
     } catch (error) {
